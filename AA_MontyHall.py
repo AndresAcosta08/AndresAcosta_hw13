@@ -39,14 +39,33 @@ def finish_game(lista,choice,change):
 		else:
 
 			for i in range(len(lista)):
-				if (i!=choice & i!='GOAT_MONTY'):
-					return lista[i]
+				if ((i!=choice) & (lista[i]!='GOAT_MONTY')):
+				return lista[i]
 
+#Se crean dos listas, en donde una guarda el resultado de cambiar la puerta y el otro de no cambiarla.
+listatrue=[]
+listafalse=[]
 
 for i in range(100):
+	numero = choose_door()
+	listatrue.append(finish_game(reveal_door(sort_doors(), numero), numero, True))
+	listafalse.append(finish_game(reveal_door(sort_doors(), numero), numero, False))
 
+#Se cuenta el numero de veces que se gano cambiando la puerta.
+contadorv = 0
+for i in range (len(listatrue)): 
+ 
+	if(listatrue[i] == 'car'):
+		contadorv= contadorv+ 1  			
+print contadorv,"%"
 
+#Se cuenta el numero de veces que se gano no cambiando la puerta.
+contadorf = 0 
+for i in range(len(listafalse)):
 	
+	if(listafalse[i] == 'car'):
+		contadorf = contadorf+1
+print contadorf,"%"
 
 
 
